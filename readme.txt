@@ -2,56 +2,77 @@
 Contributors: SriniG
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HDWT2K8TXXHUN
 Tags: quotes collection, quotes, quotations, random quote, sidebar, widget, ajax, shortcode
-Requires at least: 2.8
-Tested up to: 3.5
+Requires at least: 3.1
+Tested up to: 4.2-RC1
 Stable tag: trunk
 License: GNU General Public License
 
-Quotes Collection plugin with Ajax powered Random Quote sidebar widget helps you collect and display your favourite quotes in your WordPress blog.
+Quotes Collection plugin with Ajax powered Random Quote sidebar widget helps you collect and display your favourite quotes in your WordPress website.
 
 == Description ==
 
-Quotes Collection plugin helps you collect, manage and display your favourite quotations in your WordPress blog.
+Quotes Collection plugin helps you collect, manage and display your favourite quotations in your WordPress website or blog.
+
+**New in 2.0**
+
+* New and improved admin interface
+* Import/Export your collection of quotes in JSON format
+* Multi-widget support
+* Cleaner uninstall
+* Many other improvements
+
+*Note: If you are upgrading to 2.0 from an older version, you will have to re-add the widget and set the widget options once again after upgradation.*
 
 
 **Features and notes**
 
-* **Admin interface**: An admin interface to add, edit and manage quotes. Details such as author and source of the quote, and attributes like tags and visibility, can be specified. The 'Quotes' menu in the WP admin navigation leads to the quotes admin interface.
-* **Sidebar widget**: The Random Quote sidebar widget with Ajax refresh feature -- you will be able to get another random quote on the same space without refreshing the web page. Following is the list of options in the widget control panel:
+* **Admin interface**: An admin interface to add, edit, import, export and generally manage the collection of quotes. 
+* **Sidebar widget**: The Random Quote sidebar widget that will display a random quote from your collection and a refresh link at the bottom. As many number of instances of the widget can be added. Following is the list of options in the widget control panel:
 	* Widget title
 	* Option to show/hide quote author
 	* Option to show/hide quote source
-	* Turn on/off the ajax refresh feature
+	* Turn on/off the refresh feature
 	* Choose random or sequential order for refresh
 	* Option to refresh the quote automatically
 	* Show only quotes with certain tags
 	* Specify a character limit and filter out bigger quotes
-* **Shortcode**: Quotes can be displayed in a WordPress page by placing a `[quotcoll]`shortcode. Few examples are provided below. For more examples and the full list of arguments, please refer the [plugin homepage](http://srinig.com/wordpress/plugins/quotes-collection/) or 'other notes'. *(Note: The new `[quotcoll]` shortcode is introduced in version 1.5, that makes use of the WordPress shortcode API. The older `[quote]` shortcode is deprecated, though it will still work as a measure of backwards compatibility.)* 
+* **Shortcode**: Quotes can be displayed in a WordPress page by placing a `[quotcoll]`shortcode. Few examples are provided below. For more examples and the full list of arguments, please refer the [plugin homepage](http://srinig.com/wordpress/plugins/quotes-collection/) or 'other notes'.
 	* Placing `[quotcoll]` in the page displays all quotes.
 	* `[quotcoll author="Somebody"]` displays quotes authored by Somebody.
 	* `[quotcoll tags="tag1,tag2,tag3"]` displays quotes tagged tag1 or tag2 or tag3, one or more or all of these
 	* `[quotcoll orderby="random" limit=1]` displays a random quote
 * **The template function**: To code the random quote functionality directly into a template file, the template function `quotescollection_quote()` can be used. Please refer the plugin homepage or 'other notes' for details.
-* Compatible with WordPress 3.0 multi-site functionality.
+* **Import/Export** your collection of quotes in JSON format *(new in 2.0)*.
 * The plugin suppports localization. Refer the plugin page or 'other notes' for the full list of available languages and the respective translators. 
 
-For more information, visit the [plugin homepage](http://srinig.com/wordpress/plugins/quotes-collection/). Please provide your feedback at the [WordPress support forums](http://wordpress.org/tags/quotes-collection?forum_id=10).
+For more information, visit the [plugin homepage](http://srinig.com/wordpress/plugins/quotes-collection/).
 
 == Installation ==
-1. Upload `quotes-collection` directory to the `/wp-content/plugins/` directory
-1. Activate the 'Quotes Collection' plugin through the 'Plugins' menu in WordPress
-1. Add and manage the quotes through the 'Quotes' menu in the WordPress admin area
-1. To display a random quote in the sidebar, go to 'Widgets' menu and drag the 'Random Quote' widget into the sidebar
+
+**Method 1**
+
+1. Go to *Plugins -> Add New* in your WordPress admin area
+1. Type 'quotes collection' in the search box available and hit the 'Enter' key
+1. Locate the 'Quotes Collection' plugin authored by Srini G, and click 'Install Now'
+
+**Method 2**
+
+1. Dowload the latest version of the plugin from WordPress plugin directory
+1. Go to *Plugins -> Add New* in your WordPress admin area
+1. Click on the 'Upload Plugin' button at the top, near 'Add Plugins'
+1. Browse and select the zip file you just downloaded, and click 'Install Now'
+
+**Method 3**
+
+1. Dowload the latest version of the plugin from WordPress plugin directory
+1. Extract the zip file
+1. Using a FTP client or something similar, upload the `quotes-collection` directory to the `~/wp-content/plugins/` directory of your WordPress installation.
+
+After installation, the plugin can be activated from *Plugins -> Installed Plugins* in your WordPress admin area. Once activated, the *Quotes Collection* menu will be visible in your admin menu.
+
 
 == Frequently Asked Questions ==
 
-= How to get rid of the quotation marks that surround the random quote? =
-
-Open the quotes-collection.css file that comes along with the plugin, scroll down and look towards the bottom.
-
-= How to change the random quote text color? =
-
-Styling such as text color, font size, background color, etc., of the random quote can be customized by editing the quotes-collection.css file. Please also note that any updates to the plugin will overwrite your customized css file, so it's advisable to backup your customization before updating the plugin.
 
 = How to hide the 'Next quote »' link? = 
 
@@ -59,7 +80,7 @@ You can do this by turning off the 'Ajax Refresh' feature in widget options.
 
 = How to change the link text from 'Next quote »' to something else? =
 
-Change the value of the variable `$quotescollection_next_quote` on line 34 of the quotes-collection.php file.
+This text can be changed from *Quotes Collection -> Options* in your WordPress admin area
 
 = The 'Next quote »' link is not working. Why? =
 
@@ -69,27 +90,17 @@ Make sure your theme's header.php file has the code `<?php wp_head(); ?>` just b
 
 If you want all of the quotes to display, make sure all all the quotes fall within the 'Character limit'. There is an option named 'Character limit' for the widget (bottom most, under the 'advanced options') with a default value of '500'. The value can be changed, or simply removed and the field left blank so that none of the quotes get filtered out based on length.
 
-= Why multiple instances of the widget is not available? =
-
-There can be conflicts and undesirable behaviour when more than one instance of the random quote function call is used in the same page, especially with the ajax refresh turned on for all the instances. It is for this reason the multiple instances of the widget is currently unavailable. For the same reason, it is not advised to use the `quotescollection_quote()` function call more than once in the same page. And for the same reason, the ajax refresh option is not made available for the shortcodes. These limitations shall be overcome in a future version of the plugin.
-
-= How to change the admin access level setting for the quotes collection admin page? =
-
-Change the value of the variable `$quotescollection_admin_userlevel` on line 44 of the quotes-collection.php file. Refer [WordPress documentation](http://codex.wordpress.org/Roles_and_Capabilities) for more information about user roles and capabilities.
-
 = I have a long list of quotes, and the `[quotcoll]` shortcode puts all of the quotes in a single page. Is there a way to introduce pagination and break the long list of quotes into different pages? =
 
 Yes, pagination is supporterd in versions 1.5 and greater. `paging` and `limit_per_page` attributes can be used to achieve this. For example, `[quotcoll paging=true limit_per_page=30]` will introduce pagination with a maximum of 30 quotes per page.
 
-= How about a feature to backup/export/import the bulk of quotes in CSV/text format? =
-
-Such a feature will be available in a future version of the plugin, though no promises can be made as to when it will be available!
 
 == Screenshots ==
 
-1. Admin interface (in WordPress 3.2)
-2. 'Random Quote' widget options (WordPress 3.2)
+1. Admin interface (in WordPress 4.2)
+2. 'Random Quote' widget options (WordPress 4.2)
 3. A random quote in the sidebar
+
 
 == The [quotcoll] shortcode ==
 Quotes can be displayed in a page by placing the shortcode `[quotcoll]`. This will display all the public quotes ordered by the quote id.
@@ -142,32 +153,36 @@ Different attributes can be specified to customize the way the quotes are displa
 
 The quotescollection_quote() template function can be used to display a random quote in places other than sidebar.
 
-Usage: `<?php quotescollection_quote('arguments'); ?>`
+Usage: `<?php quotescollection_quote($arguments); ?>`
 
 The list of parameters (arguments) that can be passed on to this function:
 
 * **show_author** *(boolean)*
 	* To show/hide the author name
-		* 1 - shows the author name (default)
-		* 0 - hides the author name
+		* `true` - shows the author name (default)
+		* `false` - hides the author name
 
 * **show_source** *(boolean)*
 	* To show/hide the source field
-		* 1 - shows the source 
-		* 0 - hides the source (default)
+		* `true` - shows the source 
+		* `false` - hides the source (default)
 
 * **ajax_refresh** *(boolean)*
 	* To show/hide the 'Next quote' refresh link
-		* 1 - shows the refresh link (default)
-		* 0 - hides the hides the refresh link
+		* `true` - shows the refresh link (default)
+		* `false` - hides the hides the refresh link
 		
 * **random** *(boolean)*
 	* Refresh the quote in random or sequential order
-		* 1 - random refresh (default)
-		* 0 - sequential, with the latest quote first
+		* `true` - random refresh (default)
+		* `false` - sequential, with the latest quote first
 		
-* **auto_refresh** *(integer)*
-	* To refresh the quote automatically. Time interval is the number assigned to this parameter, in seconds. For example, `<?php quotescollection_quote('auto_refresh=5'); ?>` will refresh the quote every 5 seconds. Set the value of auto_refresh to 0 to disable this functionality, which is default.
+* **auto_refresh** *(boolean/integer)*
+	* To refresh the quote automatically
+		* `true` - auto refresh every 5 seconds
+		* `false` - auto refresh is off (default)
+		* `integer` - auto refresh is on, and the number provided will be the refresh interval, in seconds.
+			* For example, `<?php quotescollection_quote( array( 'auto_refresh' => 3 ) ); ?>` will refresh the quote every 3 seconds.
 	
 * **tags** *(string)*
 	* Comma separated list of tags. Only quotes with one or more of these tags will be shown.
@@ -176,9 +191,9 @@ The list of parameters (arguments) that can be passed on to this function:
 	* Quotes with number of characters more than this value will be filtered out. This is useful if you don't want to display long quotes using this function. The default value is 500.
 
 * **echo** *(boolean)*
-	* Toggles the display of the random quote or return the quote as an HTML text string to be used in PHP. The default value is 1 (display the quote). Valid values:
-		* 1 (true) - default
-		* 0 (false) 
+	* To `echo` or `return` the quote
+		* `true` - the quote is echoed, ie., printed out
+		* `false` - the quote block is returned as a string, the user can catch the string in a variable and output it wherever they please.
 
 **Example usage:**
 
@@ -186,11 +201,11 @@ The list of parameters (arguments) that can be passed on to this function:
 
 	* Uses the default values for the parameters. Shows author, hides source, shows the 'Next quote' link, no tags filtering, no character limit, displays the quote.
 
-* `<?php quotescollection_quote('show_author=0&show_source=1&tags=fun,fav'); ?>`
+* `<?php quotescollection_quote( array( 'show_author' => false, 'show_source' => true, 'tags' => 'fun,fav' ) ); ?>`
 
 	* Hides author, shows source, only quotes tagged with 'fun' or 'fav' or both are shown. 'Next quote' link is shown (default) and no character limit (default).
 
-* `<?php quotescollection_quote('ajax_refresh=0&char_limit=300'); ?>`
+* `<?php quotescollection_quote( array( 'ajax_refresh' => false, 'char_limit' => 300 ) ); ?>`
 
 	* The 'Next quote' link is not shown, quotes with number of characters greater that 300 are left out.
 	
@@ -239,6 +254,20 @@ Versions 1.1 and greater support localization. As of the current version, locali
 You can translate the plugin in your language if it's not done already. The localization template file (quotes-collection.pot) can be found in the 'languages' folder of the plugin. After translating send the localized files to the [plugin author](http://srinig.com/wordpress/contact/) so that it's included in the next update. If you are not sure how to go about translating, contact the plugin author.
 
 ==Changelog==
+
+* **2015-04-20: Version 2.0**
+	* Complete overhaul of the plugin. File organization modified, code refactored, the code is more class based.
+	* New and improved admin interface with
+		* Improved quotes list table using the `WP_List_Table` class
+		* Screen options to customize the number of quotes displayed per page and show/hide columns
+		* Search functionality
+		* Option to import/export quotes in `JSON` format
+		* An options page with options to customize the 'Next Quote' text, specify the maximum number of iterations for the auto-refresh feature, and enable dynamic fetching of the first random quote in cached websites.
+	* Multi-widget support added. Now as many instances of the widget can be added.
+	* Not-so-noticable, but important improvements to the markup generated for the front-end.
+	* `uninstall.php` added. Now, when the plugin is deleted, the plugin's database table, plugin options, all will be removed... no trace left behind.
+	* The translation template file `quotes-collection.pot` updated. Many of the translation strings have changed. Many new strings added, many old strings given up.
+	* Updated localization in Tamil, Hebrew, Slovak, French, Ukrainian, German and Norwegian (Bokmål) languages
 
 * **2012-12-16: Version 1.5.9**
 	* Fix for cases where random refresh always fetches only two quotes
@@ -440,7 +469,5 @@ You can translate the plugin in your language if it's not done already. The loca
 
 == Upgrade Notice ==
 
-= 1.5.9 =
-Upgrade if random refresh always fetches only two quotes, also if the there are problems with the widget controls.
-
-
+= 2.0 =
+Please note that you will have to re-add the widget and set the widget options once again after upgrading to this version. Nothing much otherwise will be affected. This is a major update with new features and plenty of improvements, upgrade highly recommended if you use WP 3.1 and above.
